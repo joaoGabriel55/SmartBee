@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1078929013786",
+    "firebase_url": "https://smartbee-3239b.firebaseio.com",
+    "project_id": "smartbee-3239b",
+    "storage_bucket": "smartbee-3239b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078929013786:android:1a344e6ba5881710",
+        "android_client_info": {
+          "package_name": "tads.smartbee.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078929013786-9uv7j0vq3clk8hcanief6mhvc7ka9ej3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1078929013786-9uv7j0vq3clk8hcanief6mhvc7ka9ej3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_Cl9MPYAET7zM1T_4ZQJTj6jdOQcUYnc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
