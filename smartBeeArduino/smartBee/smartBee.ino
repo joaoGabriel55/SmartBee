@@ -3,6 +3,23 @@
 #include <ESP8266WiFi.h>
 #include <Ticker.h>
 #include <math.h>
+#include <String.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
+
+#include "Arduino.h"
+
+#pragma once
+#include <time.h>
+#include <Udp.h>
+
+WiFiUDP ntpUDP;
+/*Var for time*/
+int16_t utc = -3; //UTC -3:00 Brazil
+uint32_t currentMillis = 0;
+uint32_t previousMillis = 0;
+
+NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 
 #define FIREBASE_HOST "smartbee-3239b.firebaseio.com"
 #define FIREBASE_AUTH "WOvd0SNDEHZ9o00lMOgHBOPTXcuMUTGXAyx41qYe"
@@ -23,34 +40,6 @@ bool publishNewState = true;
 
 void publish() {
   publishNewState = true;
-}
-
-void setup() {
-  // put your setup code here, to run once:
-  connectWifi();
-  pinSetup();
-  // Registra o ticker para publicar de tempos em tempos
-  ticker.attach_ms(PUBLISH_INTERVAL, publish);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  if (publishNewState) {
-    Serial.println("Publish new State");
-
-    temperatura = tempRead();
-    Serial.print("Temperatura = ");
-    Serial.print(temperatura);
-    Serial.println(" *C");
-    if (!isnan(temperatura)) {
-      // Manda para o firebase
-      Firebase.pushFloat("temperature", temperatura);
-      publishNewState = false;
-    } else {
-      Serial.println("Error Publishing");
-    }
-  }
-
 }
 
 void connectWifi() {
@@ -77,23 +66,45 @@ void connectWifi() {
   Serial.println(WiFi.localIP());
 }
 
+// forçar a atualização do relógio no servidor NTP.
+void forceUpdate(void) {
+  timeClient.forceUpdate();
+}
+
+void setupTime() {
+  timeClient.begin();
+  timeClient.update();
+}
+
+String generateTime() {
+  currentMillis = millis();//Tempo atual em ms
+  //Lógica de verificação do tempo
+  if (currentMillis - previousMillis > 1000) {
+    previousMillis = currentMillis;    // Salva o tempo atual
+    //printf("Time Epoch: %d: ", timeClient.getEpochTime());
+    timeClient.getFormattedTime();
+  }
+
+  return timeClient.getFullFormattedTime();
+}
+
 void pinSetup() {
-//    pinMode(ledPin, OUTPUT);
-//    pinMode(ledPin2, OUTPUT);
-//    pinMode(ledPin3, OUTPUT);
-//    pinMode(ventoinha, OUTPUT);
-//    pinMode(presenca2, OUTPUT);
-//    pinMode(buzzer, OUTPUT);
-//    pinMode(presenca, INPUT);
-//  
-      Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-//    Firebase.setBool("led", false);
-//    Firebase.setBool("led2", false);
-//    Firebase.setBool("led3", false);
-//    Firebase.setBool("presence", false);
-//    Firebase.setBool("presence_switch", false);
-//    Firebase.setBool("arCondicionado", false);
-  
+  //    pinMode(ledPin, OUTPUT);
+  //    pinMode(ledPin2, OUTPUT);
+  //    pinMode(ledPin3, OUTPUT);
+  //    pinMode(ventoinha, OUTPUT);
+  //    pinMode(presenca2, OUTPUT);
+  //    pinMode(buzzer, OUTPUT);
+  //    pinMode(presenca, INPUT);
+  //
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  //    Firebase.setBool("led", false);
+  //    Firebase.setBool("led2", false);
+  //    Firebase.setBool("led3", false);
+  //    Firebase.setBool("presence", false);
+  //    Firebase.setBool("presence_switch", false);
+  //    Firebase.setBool("arCondicionado", false);
+
 }
 
 float tempRead() {
@@ -107,3 +118,40 @@ float tempRead() {
 
 }
 
+void setup() {
+  // put your setup code here, to run once:
+  connectWifi();
+  setupTime();
+  pinSetup();
+  // Registra o ticker para publicar de tempos em tempos
+  ticker.attach_ms(PUBLISH_INTERVAL, publish);
+}
+
+void loop() {
+  generateTime();
+
+  if (publishNewState) {
+    Serial.println("Publish new State");
+
+    temperatura = tempRead();
+    Serial.print("Temperatura = ");
+    Serial.print(temperatura);
+    Serial.println(" *C");
+    if (!isnan(temperatura)) {
+      // Manda para o firebase
+      Firebase.pushFloat("temperature", temperatura);
+
+      String buf = generateTime();
+      buf.concat(";");
+      buf.concat(temperatura);
+
+      Firebase.pushString("temperatureDate", buf);
+      Serial.println(generateTime());
+      Serial.println(buf);
+
+      publishNewState = false;
+    } else {
+      Serial.println("Error Publishing");
+    }
+  }
+}
