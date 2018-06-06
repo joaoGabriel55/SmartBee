@@ -23,13 +23,19 @@ NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 
 #define FIREBASE_HOST "smartbee-3239b.firebaseio.com"
 #define FIREBASE_AUTH "WOvd0SNDEHZ9o00lMOgHBOPTXcuMUTGXAyx41qYe"
-#define PUBLISH_INTERVAL 2000
+#define PUBLISH_INTERVAL 10000
 
 //#define WIFI_SSID "Quaresma"
 //#define WIFI_PASSWORD "15081967"
 
-#define WIFI_SSID "Apontadoparauceu"
-#define WIFI_PASSWORD "bufobufo"
+//#define WIFI_SSID "Apontadoparauceu"
+//#define WIFI_PASSWORD "bufobufo"
+#define WIFI_SSID "UFRN - EAJ - UBICOMP"
+#define WIFI_PASSWORD "cuscuzcomovo"
+
+// valores que serao recebidos pelo Arduino UNO
+String valoresToReceive;
+String valorReceived;
 
 int sensor = 0;
 const int LM35 = 0;
@@ -118,8 +124,53 @@ float tempRead() {
 
 }
 
+String getDataBySerial(String data, char separator, int index)
+{
+  int found = 0;
+  int strIndex[] = {0, -1};
+  int maxIndex = data.length()-1;
+
+  for(int i=0; i<=maxIndex && found<=index; i++){
+    if(data.charAt(i)==separator || i==maxIndex){
+        found++;
+        strIndex[0] = strIndex[1]+1;
+        strIndex[1] = (i == maxIndex) ? i+1 : i;
+    }
+  }
+
+  return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+
+void receiveDataMega(){
+    while(Serial.available() > 0){
+          valorReceived = (byte)Serial.read();
+          if(valorReceived == ":"){
+            
+            String temp1 = getDataBySerial(valoresToReceive, ';', 0);
+            String temp2 = getDataBySerial(valoresToReceive, ';', 1);
+            String humidade = getDataBySerial(valoresToReceive, ';', 2);
+
+            Serial.println(temp1);
+            Serial.println(temp2);
+            Serial.println(humidade);
+            
+//            int v = atoi(valor.c_str());
+//            if(led=="/leds/led15"){
+//               Firebase.setInt(led, v);
+//            }
+            
+            valoresToReceive="";
+            break;  
+          }else{
+             valoresToReceive += valorReceived;
+          }
+          delay(1);
+    }
+ }
+
 void setup() {
   // put your setup code here, to run once:
+  Serial.write("CONNECTED:");
   connectWifi();
   setupTime();
   pinSetup();
@@ -131,12 +182,12 @@ void loop() {
   generateTime();
 
   if (publishNewState) {
-    Serial.println("Publish new State");
+    //Serial.println("Publish new State");
 
     temperatura = tempRead();
-    Serial.print("Temperatura = ");
-    Serial.print(temperatura);
-    Serial.println(" *C");
+    //Serial.print("Temperatura = ");
+    //Serial.print(temperatura);
+    //Serial.println(" *C");
     if (!isnan(temperatura)) {
       // Manda para o firebase
       Firebase.pushFloat("temperature", temperatura);
@@ -146,8 +197,10 @@ void loop() {
       buf.concat(temperatura);
 
       Firebase.pushString("temperatureDate", buf);
-      Serial.println(generateTime());
-      Serial.println(buf);
+      //Serial.println(generateTime());
+      //Serial.println(buf);
+
+      receiveDataMega();
 
       publishNewState = false;
     } else {
