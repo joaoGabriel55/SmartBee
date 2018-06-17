@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        temperatura = FirebaseHandlerData.getmFirebaseDatabase().getReference().child("temperature");
+        temperatura = FirebaseHandlerData.getmFirebaseDatabase().getReference("colmeia1").child("temperature");
         tvTempeture = (TextView) findViewById(R.id.temp_tv);
 
         FirebaseHandlerData.manipulateNode(childEventListener, temperatura, tvTempeture);
