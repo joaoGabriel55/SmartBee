@@ -14,7 +14,7 @@ public class FirebaseHandlerData {
 
     private static FirebaseDatabase mFirebaseDatabase;
 
-    public static FirebaseDatabase getmFirebaseDatabase() {
+    public static FirebaseDatabase getFirebaseDatabase() {
         return mFirebaseDatabase.getInstance();
     }
 
@@ -32,7 +32,8 @@ public class FirebaseHandlerData {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                Double temp = dataSnapshot.getValue(Double.class);
+                textView.setText(temp.intValue() + "");
             }
 
             @Override
