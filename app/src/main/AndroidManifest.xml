@@ -20,7 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChartActivity"
-            android:label="Gráfico da Temperatura"></activity>
+            android:label="Gráfico da Temperatura"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked"></activity>
     </application>
 
 </manifest>
