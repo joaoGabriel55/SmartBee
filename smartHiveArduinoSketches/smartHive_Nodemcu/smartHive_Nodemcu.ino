@@ -47,6 +47,8 @@ float temperatura = 0;
 Ticker ticker;
 bool publishNewState = true;
 
+int count = 0;
+
 void publish() {
   publishNewState = true;
 }
@@ -172,11 +174,12 @@ void receiveDataUNO(){
     // valores que serao recebidos pelo Arduino UNO
     String valoresToReceive;
     char valorReceived;
+    
   
     while(Serial.available() > 0){
           sendDataToFireBase(); 
           digitalWrite(ledStatus, HIGH);
-          delay(300);
+          //delay(300);
           digitalWrite(ledStatus,LOW); 
           valorReceived = (byte)Serial.read();
           //Serial.println(valorReceived);
@@ -186,6 +189,7 @@ void receiveDataUNO(){
             String temp2 = getDataBySerial(valoresToReceive, ';', 0);
             String temp3 = getDataBySerial(valoresToReceive, ';', 1);
             String humidade = getDataBySerial(valoresToReceive, ';', 2);
+            String peso = getDataBySerial(valoresToReceive, ';', 3);
 
             Firebase.pushFloat("/colmeia2/temperature", temp2.toFloat());
             Firebase.pushFloat("/colmeia3/temperature", temp3.toFloat());
@@ -193,7 +197,16 @@ void receiveDataUNO(){
             Firebase.pushFloat("/colmeia1/humidade", humidade.toFloat());
             Firebase.pushFloat("/colmeia2/humidade", humidade.toFloat());
             Firebase.pushFloat("/colmeia3/humidade", humidade.toFloat());
-            
+
+            if(count == 0){
+              Firebase.pushFloat("/colmeia1/peso", peso.toFloat());
+              Firebase.pushFloat("/colmeia2/peso", peso.toFloat());
+              Firebase.pushFloat("/colmeia3/peso", peso.toFloat());
+            } else {
+              Firebase.setFloat("/colmeia1/peso", peso.toFloat());
+              Firebase.setFloat("/colmeia2/peso", peso.toFloat());
+              Firebase.setFloat("/colmeia3/peso", peso.toFloat());
+            }
             //Serial.println(temp1);
             //Serial.println(temp2);
             //Serial.println(humidade);

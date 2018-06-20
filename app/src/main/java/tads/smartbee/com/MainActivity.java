@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private ChildEventListener childEventListHumid2;
     private ChildEventListener childEventListHumid3;
 
-    private ChildEventListener childEventListPeso;
+    private ChildEventListener childEventListPeso1;
+    private ChildEventListener childEventListPeso2;
+    private ChildEventListener childEventListPeso3;
 
     private CardView cardView1;
     private CardView cardView2;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         listenerTemperature();
         listenerHumidity();
+        listenerWeight();
 
         //Cards clicks
         cardView1 = (CardView) findViewById(R.id.card_col1);
@@ -122,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         tvPeso2 = (TextView) findViewById(R.id.peso2_tv);
         tvPeso3 = (TextView) findViewById(R.id.peso3_tv);
 
-        FirebaseHandlerData.manipulateNode(childEventListPeso, peso, tvPeso1);
-        FirebaseHandlerData.manipulateNode(childEventListPeso, peso, tvPeso2);
-        FirebaseHandlerData.manipulateNode(childEventListPeso, peso, tvPeso3);
+        FirebaseHandlerData.manipulateNodePeso(childEventListPeso1, peso, tvPeso1);
+        FirebaseHandlerData.manipulateNodePeso(childEventListPeso2, peso, tvPeso2);
+        FirebaseHandlerData.manipulateNodePeso(childEventListPeso3, peso, tvPeso3);
     }
 }

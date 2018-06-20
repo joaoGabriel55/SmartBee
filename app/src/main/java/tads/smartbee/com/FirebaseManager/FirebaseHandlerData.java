@@ -54,4 +54,42 @@ public class FirebaseHandlerData {
         databaseReference.addChildEventListener(childEventListener);
     }
 
+    public static void manipulateNodePeso(ChildEventListener childEventListener, DatabaseReference databaseReference,
+                                      final TextView textView) {
+
+        childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Double temp = dataSnapshot.getValue(Double.class);
+                Double tempKg = temp/1000.0;
+                textView.setText(tempKg.intValue() + "");
+                Log.i("TESTEAGAIN", tempKg + "");
+                Log.i("TESTEAGAIN", textView + "");
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Double temp = dataSnapshot.getValue(Double.class);
+                Double tempKg = temp/1000.0;
+                textView.setText(tempKg.intValue() + "");
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        databaseReference.addChildEventListener(childEventListener);
+    }
+
 }
