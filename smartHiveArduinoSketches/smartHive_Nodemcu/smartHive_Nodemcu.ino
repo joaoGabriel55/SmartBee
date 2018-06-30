@@ -30,13 +30,17 @@ NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 //#define WIFI_SSID "Quaresma"
 //#define WIFI_PASSWORD "15081967"
 
-#define WIFI_SSID "Apontadoparauceu"
-#define WIFI_PASSWORD "bufobufo"
+//#define WIFI_SSID "Apontadoparauceu"
+//#define WIFI_PASSWORD "bufobufo"
+
 //#define WIFI_SSID "UFRN - EAJ - UBICOMP"
 //#define WIFI_PASSWORD "cuscuzcomovo"
 
 //#define WIFI_SSID "meu wifi"
 //#define WIFI_PASSWORD "naotemsenha"
+
+#define WIFI_SSID "casa_211"
+#define WIFI_PASSWORD "erismar211"
 
 int ledStatus = 13; 
 
@@ -189,7 +193,6 @@ void receiveDataUNO(){
             String temp2 = getDataBySerial(valoresToReceive, ';', 0);
             String temp3 = getDataBySerial(valoresToReceive, ';', 1);
             String humidade = getDataBySerial(valoresToReceive, ';', 2);
-            String peso = getDataBySerial(valoresToReceive, ';', 3);
 
             Firebase.pushFloat("/colmeia2/temperature", temp2.toFloat());
             Firebase.pushFloat("/colmeia3/temperature", temp3.toFloat());
@@ -198,15 +201,6 @@ void receiveDataUNO(){
             Firebase.pushFloat("/colmeia2/humidade", humidade.toFloat());
             Firebase.pushFloat("/colmeia3/humidade", humidade.toFloat());
 
-            if(count == 0){
-              Firebase.pushFloat("/colmeia1/peso", peso.toFloat());
-              Firebase.pushFloat("/colmeia2/peso", peso.toFloat());
-              Firebase.pushFloat("/colmeia3/peso", peso.toFloat());
-            } else {
-              Firebase.setFloat("/colmeia1/peso", peso.toFloat());
-              Firebase.setFloat("/colmeia2/peso", peso.toFloat());
-              Firebase.setFloat("/colmeia3/peso", peso.toFloat());
-            }
             //Serial.println(temp1);
             //Serial.println(temp2);
             //Serial.println(humidade);

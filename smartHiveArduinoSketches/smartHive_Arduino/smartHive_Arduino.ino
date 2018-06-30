@@ -1,14 +1,11 @@
 #include <DHT.h>
-#include <HX711_ADC.h>
 //#include <SoftwareSerial.h>
 
 #define DHTPIN A2     // pino que estamos conectado
 #define DHTTYPE DHT11 // DHT 11
 
 DHT dht(DHTPIN, DHTTYPE);
-
-HX711_ADC LoadCell(A3, A4);
-
+                  //DT SCK
 int sensor = 0;
 const int LM35 = A1;
 float tempColmeia1 = 0;
@@ -22,7 +19,6 @@ void setup() {
   // put your setup code here, to run once: 
   //Serial.println("DHTxx test!");
   Serial.begin(115200);
-  initConfigLoadCell(2000, 1000.0);
   dht.begin();
 }
 
@@ -70,7 +66,6 @@ void sendSerialNode(float tempColmeia1, float tempColmeia2, float humidade) {
   String temp1;
   String temp2;
   String humid;
-  String peso;
 
   //Var para auxiliar na conversão de "String" para "char"
   char copy[50];
@@ -83,9 +78,8 @@ void sendSerialNode(float tempColmeia1, float tempColmeia2, float humidade) {
     temp1 = String(tempColmeia1);
     temp2 = String(tempColmeia2);
     humid = String(humidade);
-    peso = String(calcWeight());
     
-    valoresConcat = temp1 + ";" + temp2 + ";" + humid + ";" + peso + ":";
+    valoresConcat = temp1 + ";" + temp2 + ";" + humid + ":";
     Serial.println(valoresConcat);
     //Serial.write("TESTA:");
     //delay(5000);
@@ -93,23 +87,5 @@ void sendSerialNode(float tempColmeia1, float tempColmeia2, float humidade) {
     Serial.print("ERROR");
   }
 
-}
-
-void initConfigLoadCell(int startLoadCell, float calFactor){
-  LoadCell.begin();
-  LoadCell.start(startLoadCell);
-  LoadCell.setCalFactor(calFactor);
-}
-
-float calcWeight(){
-  LoadCell.update();
-  float weight = LoadCell.getData();
-
-  if(weight>0){
-    return weight;
-  } else {
-    return 0.0;
-  }
-  
 }
 

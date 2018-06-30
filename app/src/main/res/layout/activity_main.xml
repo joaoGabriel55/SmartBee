@@ -16,12 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="152dp"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/colorAccent"
             android:elevation="8dp">
 
             <LinearLayout
                 android:id="@+id/card_col1_layout"
-                android:layout_width="206dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
                 android:orientation="vertical"
@@ -32,73 +31,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Colmeia 1"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/ic_launcher_background"
                     android:textSize="21dp"
                     android:textStyle="normal|bold" />
 
                 <LinearLayout
-                    android:layout_width="180dp"
-                    android:layout_height="96dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="67dp"
-                        android:layout_height="68dp"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/ic_weight" />
-
-                    <TextView
-                        android:id="@+id/peso1_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="25"
-                        android:textColor="@android:color/black"
-                        android:textSize="52dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:layout_gravity="bottom"
-                        android:text="kg"
-                        android:textColor="@android:color/black" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/card_col1_layout_2"
-                android:layout_width="138dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="159dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="54dp"
+                            android:layout_width="64dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_temperature" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -107,36 +64,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="°C"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
                         </LinearLayout>
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="138dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="56dp"
+                            android:layout_width="53dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_water" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -145,18 +101,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:text="%"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -172,12 +126,11 @@
             android:layout_width="match_parent"
             android:layout_height="152dp"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/colorAccent"
             android:elevation="8dp">
 
             <LinearLayout
                 android:id="@+id/card_col2_layout"
-                android:layout_width="206dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
                 android:orientation="vertical"
@@ -188,73 +141,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Colmeia 2"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/ic_launcher_background"
                     android:textSize="21dp"
                     android:textStyle="normal|bold" />
 
                 <LinearLayout
-                    android:layout_width="180dp"
-                    android:layout_height="96dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="67dp"
-                        android:layout_height="68dp"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/ic_weight" />
-
-                    <TextView
-                        android:id="@+id/peso2_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="25"
-                        android:textColor="@android:color/black"
-                        android:textSize="52dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:layout_gravity="bottom"
-                        android:text="kg"
-                        android:textColor="@android:color/black" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/card_col2_layout_2"
-                android:layout_width="138dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="159dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="54dp"
+                            android:layout_width="64dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_temperature" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -263,36 +174,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="°C"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
                         </LinearLayout>
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="138dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="56dp"
+                            android:layout_width="53dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_water" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -301,18 +211,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:text="%"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -328,12 +236,11 @@
             android:layout_width="match_parent"
             android:layout_height="152dp"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/colorAccent"
             android:elevation="8dp">
 
             <LinearLayout
                 android:id="@+id/card_col3_layout"
-                android:layout_width="206dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
                 android:orientation="vertical"
@@ -344,73 +251,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Colmeia 3"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/ic_launcher_background"
                     android:textSize="21dp"
                     android:textStyle="normal|bold" />
 
                 <LinearLayout
-                    android:layout_width="180dp"
-                    android:layout_height="96dp"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="81dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="67dp"
-                        android:layout_height="68dp"
-                        android:layout_margin="8dp"
-                        android:src="@drawable/ic_weight" />
-
-                    <TextView
-                        android:id="@+id/peso3_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="25"
-                        android:textColor="@android:color/black"
-                        android:textSize="52dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
-                        android:layout_gravity="bottom"
-                        android:text="kg"
-                        android:textColor="@android:color/black" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/card_col3_layout_2"
-                android:layout_width="138dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="109dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="159dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="54dp"
+                            android:layout_width="64dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_temperature" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -419,36 +284,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="°C"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
                         </LinearLayout>
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="137dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="39dp"
-                            android:layout_height="56dp"
+                            android:layout_width="53dp"
+                            android:layout_height="81dp"
                             android:src="@drawable/ic_water" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="8dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -457,18 +321,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="25"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:text="%"
-                                android:textColor="@android:color/white"
-                                android:textSize="24dp"
-                                android:textStyle="bold" />
+                                android:textColor="@android:color/black"
+                                android:textSize="36sp" />
 
                         </LinearLayout>
                     </LinearLayout>

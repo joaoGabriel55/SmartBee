@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private ChildEventListener childEventListHumid2;
     private ChildEventListener childEventListHumid3;
 
-    private ChildEventListener childEventListPeso1;
-    private ChildEventListener childEventListPeso2;
-    private ChildEventListener childEventListPeso3;
-
     private CardView cardView1;
     private CardView cardView2;
     private CardView cardView3;
@@ -59,22 +55,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         listenerTemperature();
         listenerHumidity();
-        listenerWeight();
 
         //Cards clicks
         cardView1 = (CardView) findViewById(R.id.card_col1);
         cardView2 = (CardView) findViewById(R.id.card_col2);
         cardView3 = (CardView) findViewById(R.id.card_col3);
 
-        clickCardCol(cardView1, "colmeia1");
-        clickCardCol(cardView2, "colmeia2");
-        clickCardCol(cardView3, "colmeia3");
+        clickCardColmeia(cardView1, "colmeia1");
+        clickCardColmeia(cardView2, "colmeia2");
+        clickCardColmeia(cardView3, "colmeia3");
     }
 
-
-    private void clickCardCol(CardView cardView, final String typeChart) {
+    private void clickCardColmeia(CardView cardView, final String typeChart) {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Manipular temperatura obtida via sensor
+     *  Manipular temperatura obtida via sensor
      */
     private void listenerTemperature() {
         temperatura1 = FirebaseHandlerData.getFirebaseDatabase().getReference("colmeia1").child("temperature");
@@ -118,15 +114,4 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHandlerData.manipulateNode(childEventListHumid3, humidade, tvHumidade3);
     }
 
-    private void listenerWeight() {
-        peso = FirebaseHandlerData.getFirebaseDatabase().getReference("colmeia1").child("peso");
-
-        tvPeso1 = (TextView) findViewById(R.id.peso1_tv);
-        tvPeso2 = (TextView) findViewById(R.id.peso2_tv);
-        tvPeso3 = (TextView) findViewById(R.id.peso3_tv);
-
-        FirebaseHandlerData.manipulateNodePeso(childEventListPeso1, peso, tvPeso1);
-        FirebaseHandlerData.manipulateNodePeso(childEventListPeso2, peso, tvPeso2);
-        FirebaseHandlerData.manipulateNodePeso(childEventListPeso3, peso, tvPeso3);
-    }
 }

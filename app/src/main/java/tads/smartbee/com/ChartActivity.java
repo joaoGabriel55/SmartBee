@@ -39,7 +39,6 @@ public class ChartActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
 
-        //ab.setTitle("Sobre");
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeButtonEnabled(true);
 
