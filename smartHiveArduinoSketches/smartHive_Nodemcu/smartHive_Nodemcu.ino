@@ -39,10 +39,14 @@ NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 //#define WIFI_SSID "meu wifi"
 //#define WIFI_PASSWORD "naotemsenha"
 
-#define WIFI_SSID "casa_211"
-#define WIFI_PASSWORD "erismar211"
+//#define WIFI_SSID "casa_211"
+//#define WIFI_PASSWORD "erismar211"
 
-int ledStatus = 13; 
+#define WIFI_SSID "INFOMIND"
+#define WIFI_PASSWORD "info@123"
+
+
+int ledStatus = 13;
 
 int sensor = 0;
 const int LM35 = 0;
@@ -59,21 +63,21 @@ void publish() {
 
 void setup() {
   pinMode(ledStatus, OUTPUT);
-  
+
   Serial.write("CONNECTED:");
-  
+
   //Comunicação serial
   Serial.begin(115200);
   connectWifi();
-  
+
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-//  setupTime();
+  //  setupTime();
   // Registra o ticker para publicar de tempos em tempos
   ticker.attach_ms(PUBLISH_INTERVAL, publish);
 }
 
 void loop() {
-  generateTime();  
+  generateTime();
   //sendDataToFireBase();
   receiveDataUNO();
 }
@@ -81,11 +85,11 @@ void loop() {
 void connectWifi() {
   delay(10);
 
-    // We start by connecting to a WiFi network
-    //Serial.print("Connecting to ");
-    //Serial.println(WIFI_SSID);
+  // We start by connecting to a WiFi network
+  //Serial.print("Connecting to ");
+  //Serial.println(WIFI_SSID);
 
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -121,21 +125,21 @@ String generateTime() {
 
 float tempRead() {
 
-//  sensor = analogRead(LM35);
-//  temperatura = (float(analogRead(LM35)) * 5 / (1023)) / 0.01;
-//  delay(500);
-    sensor = analogRead(LM35);
-    float millivolts = ( sensor / 1024.0) * 3000;
-    temperatura = millivolts / 10;
-    delay(500);
+  //  sensor = analogRead(LM35);
+  //  temperatura = (float(analogRead(LM35)) * 5 / (1023)) / 0.01;
+  //  delay(500);
+  sensor = analogRead(LM35);
+  float millivolts = ( sensor / 1024.0) * 3000;
+  temperatura = millivolts / 10;
+  delay(500);
 
   return temperatura;
 }
 
-void sendDataToFireBase(){
+void sendDataToFireBase() {
   if (publishNewState) {
     //Serial.println("Publish new State");
-    
+
     temperatura = tempRead();
     if (!isnan(temperatura)) {
       // Manda para o firebase
@@ -143,7 +147,7 @@ void sendDataToFireBase(){
       String buf = generateTime();
       buf.concat(";");
       buf.concat(temperatura);
-      
+
       //Serial.println("Temperatura");
       //Serial.println(temperatura);
 
@@ -173,43 +177,43 @@ String getDataBySerial(String data, char separator, int index) {
   return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
-void receiveDataUNO(){
-    
-    // valores que serao recebidos pelo Arduino UNO
-    String valoresToReceive;
-    char valorReceived;
-    
-  
-    while(Serial.available() > 0){
-          sendDataToFireBase(); 
-          digitalWrite(ledStatus, HIGH);
-          //delay(300);
-          digitalWrite(ledStatus,LOW); 
-          valorReceived = (byte)Serial.read();
-          //Serial.println(valorReceived);
-          if(valorReceived == ':'){
-            Serial.println(valoresToReceive);
+void receiveDataUNO() {
 
-            String temp2 = getDataBySerial(valoresToReceive, ';', 0);
-            String temp3 = getDataBySerial(valoresToReceive, ';', 1);
-            String humidade = getDataBySerial(valoresToReceive, ';', 2);
+  // valores que serao recebidos pelo Arduino UNO
+  String valoresToReceive;
+  char valorReceived;
 
-            Firebase.pushFloat("/colmeia2/temperature", temp2.toFloat());
-            Firebase.pushFloat("/colmeia3/temperature", temp3.toFloat());
 
-            Firebase.pushFloat("/colmeia1/humidade", humidade.toFloat());
-            Firebase.pushFloat("/colmeia2/humidade", humidade.toFloat());
-            Firebase.pushFloat("/colmeia3/humidade", humidade.toFloat());
+  while (Serial.available() > 0) {
+    sendDataToFireBase();
+    digitalWrite(ledStatus, HIGH);
+    //delay(300);
+    digitalWrite(ledStatus, LOW);
+    valorReceived = (byte)Serial.read();
+    //Serial.println(valorReceived);
+    if (valorReceived == ':') {
+      Serial.println(valoresToReceive);
 
-            //Serial.println(temp1);
-            //Serial.println(temp2);
-            //Serial.println(humidade);
-            
-            valoresToReceive="";
-            break;
-          }else{
-             valoresToReceive += valorReceived;
-          }
-          delay(1);
+      String temp2 = getDataBySerial(valoresToReceive, ';', 0);
+      String temp3 = getDataBySerial(valoresToReceive, ';', 1);
+      String humidade = getDataBySerial(valoresToReceive, ';', 2);
+
+      Firebase.pushFloat("/colmeia2/temperature", temp2.toFloat());
+      Firebase.pushFloat("/colmeia3/temperature", temp3.toFloat());
+
+      Firebase.pushFloat("/colmeia1/humidade", humidade.toFloat());
+      Firebase.pushFloat("/colmeia2/humidade", humidade.toFloat());
+      Firebase.pushFloat("/colmeia3/humidade", humidade.toFloat());
+
+      //Serial.println(temp1);
+      //Serial.println(temp2);
+      //Serial.println(humidade);
+
+      valoresToReceive = "";
+      break;
+    } else {
+      valoresToReceive += valorReceived;
     }
- }
+    delay(1);
+  }
+}
