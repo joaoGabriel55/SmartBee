@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SmartHive</string>
+    <string name="label_action_bar">Status Colmeia</string>
+    <string name="descricao">Bem-vindo ao Smart Hive! Você agora tem em suas mãos um app inteligente que monitora as condições de temperatura e massa de sua colmeia, facilitando o monitoramento e tornando-o remoto</string>
 </resources>

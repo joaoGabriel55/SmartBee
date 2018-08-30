@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -14,11 +16,17 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_col1"
             android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_height="177dp"
             android:layout_margin="8dp"
-            android:elevation="8dp">
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:id="@+id/card_col1_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -27,96 +35,81 @@
                 android:padding="8dp">
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Colmeia 1"
-                    android:textColor="@color/ic_launcher_background"
-                    android:textSize="21dp"
-                    android:textStyle="normal|bold" />
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Peso"
+                    android:textColor="@color/label_color_card"
+                    android:textSize="18dp"
+                    android:textStyle="normal|bold"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.086" />
 
-                <LinearLayout
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="95dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_weight"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.628" />
+
+
+                <TextView
+                    android:id="@+id/peso_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="48dp"
                     android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
+                    android:fontFamily="sans-serif"
+                    android:text="25.0"
+                    android:textColor="@android:color/black"
+                    android:textSize="78sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.857" />
 
-                    <LinearLayout
-                        android:layout_width="159dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="kg"
+                    android:textColor="@android:color/black"
+                    android:textSize="28sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/peso_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/peso_tv" />
 
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_temperature" />
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/temp1_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="°C"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:textColor="@color/label_color_card"
+                    android:text="Alterar Escala" />-->
 
 
-                    <LinearLayout
-                        android:layout_width="138dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="53dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_water" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/humid1_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="%"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
 
 
         </android.support.v7.widget.CardView>
@@ -124,11 +117,21 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_col2"
             android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_height="177dp"
             android:layout_margin="8dp"
-            android:elevation="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_col1"
+            app:layout_constraintVertical_bias="0.09">
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:id="@+id/card_col2_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -137,210 +140,186 @@
                 android:padding="8dp">
 
                 <TextView
+                    android:id="@+id/textViewTempLabel"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Colmeia 2"
-                    android:textColor="@color/ic_launcher_background"
-                    android:textSize="21dp"
-                    android:textStyle="normal|bold" />
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Temperatura (°C)"
+                    android:textColor="@color/label_color_card"
+                    android:textSize="18dp"
+                    android:textStyle="normal|bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="88dp"
+                    android:layout_height="93dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
+                    android:src="@drawable/ic_temperature"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTempLabel" />
 
-                    <LinearLayout
-                        android:layout_width="159dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_temperature" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/temp2_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="°C"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="138dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="53dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_water" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/humid2_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="%"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_col3"
-            android:layout_width="match_parent"
-            android:layout_height="152dp"
-            android:layout_margin="8dp"
-            android:elevation="8dp">
-
-            <LinearLayout
-                android:id="@+id/card_col3_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:orientation="vertical"
-                android:padding="8dp">
 
                 <TextView
+                    android:id="@+id/temp_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Colmeia 3"
-                    android:textColor="@color/ic_launcher_background"
-                    android:textSize="21dp"
-                    android:textStyle="normal|bold" />
+                    android:layout_marginTop="42dp"
+                    android:fontFamily="sans-serif"
+                    android:text="25.0"
+                    android:textColor="@android:color/black"
+                    android:textSize="78sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewTemp"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textViewTemp"
                     android:layout_width="wrap_content"
-                    android:layout_height="81dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="°"
+                    android:textColor="@android:color/black"
+                    android:textSize="78sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:layout_width="159dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
 
-                        <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_temperature" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/temp3_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="°C"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:textColor="@color/label_color_card"
+                    android:text="Alterar Escala" />-->
 
 
-                    <LinearLayout
-                        android:layout_width="137dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="8dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="53dp"
-                            android:layout_height="81dp"
-                            android:src="@drawable/ic_water" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/humid3_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="25"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="%"
-                                android:textColor="@android:color/black"
-                                android:textSize="36sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
 
 
         </android.support.v7.widget.CardView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="Smart Hive"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textColor="@color/label_color_card"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.979"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/card_col2"
+            app:layout_constraintVertical_bias="0.578" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="139dp"
+            android:layout_height="96dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_col2"
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+        <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/card_col2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="152dp"-->
+        <!--android:layout_margin="8dp"-->
+        <!--android:elevation="8dp">-->
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/card_col2_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="8dp">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:text="Temperatura"-->
+        <!--android:textColor="@color/label_color_card"-->
+        <!--android:textSize="18dp"-->
+        <!--android:textStyle="normal|bold" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="95dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:src="@drawable/ic_temperature" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="90dp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/temp_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="25"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="78sp" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="°C"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="78sp" />-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

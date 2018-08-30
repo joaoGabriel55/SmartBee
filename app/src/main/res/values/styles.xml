@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/ic_launcher_background</item>
     </style>
 
+    <style name="AppTheme.Fullscreen" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

@@ -7,10 +7,6 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
-#include <SoftwareSerial.h>
-
-#include "Arduino.h"
-
 #pragma once
 #include <time.h>
 #include <Udp.h>
@@ -24,14 +20,14 @@ uint32_t previousMillis = 0;
 NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 
 #define FIREBASE_HOST "smartbee-3239b.firebaseio.com"
-#define FIREBASE_AUTH "WOvd0SNDEHZ9o00lMOgHBOPTXcuMUTGXAyx41qYe"
+#define FIREBASE_AUTH "6TCb0HeYnfEL9EiLgIC0w1JORn0okac2W4HveVYl"
 #define PUBLISH_INTERVAL 10000
 
 //#define WIFI_SSID "Quaresma"
 //#define WIFI_PASSWORD "15081967"
 
-//#define WIFI_SSID "Apontadoparauceu"
-//#define WIFI_PASSWORD "bufobufo"
+#define WIFI_SSID "Apontadoparauceu"
+#define WIFI_PASSWORD "bufobufo"
 
 //#define WIFI_SSID "UFRN - EAJ - UBICOMP"
 //#define WIFI_PASSWORD "cuscuzcomovo"
@@ -42,9 +38,8 @@ NTPClient timeClient(ntpUDP, "a.st1.ntp.br", utc * 3600, 60000);
 //#define WIFI_SSID "casa_211"
 //#define WIFI_PASSWORD "erismar211"
 
-#define WIFI_SSID "INFOMIND"
-#define WIFI_PASSWORD "info@123"
-
+//#define WIFI_SSID "INFOMIND"
+//#define WIFI_PASSWORD "info@123"
 
 int ledStatus = 13;
 
@@ -78,7 +73,6 @@ void setup() {
 
 void loop() {
   generateTime();
-  //sendDataToFireBase();
   receiveDataUNO();
 }
 
@@ -183,9 +177,8 @@ void receiveDataUNO() {
   String valoresToReceive;
   char valorReceived;
 
-
   while (Serial.available() > 0) {
-    sendDataToFireBase();
+    //sendDataToFireBase();
     digitalWrite(ledStatus, HIGH);
     //delay(300);
     digitalWrite(ledStatus, LOW);
@@ -194,20 +187,13 @@ void receiveDataUNO() {
     if (valorReceived == ':') {
       Serial.println(valoresToReceive);
 
-      String temp2 = getDataBySerial(valoresToReceive, ';', 0);
-      String temp3 = getDataBySerial(valoresToReceive, ';', 1);
-      String humidade = getDataBySerial(valoresToReceive, ';', 2);
+      String temperatura = getDataBySerial(valoresToReceive, ';', 0);
+      String peso = getDataBySerial(valoresToReceive, ';', 1);
+      String umidade = getDataBySerial(valoresToReceive, ';', 2);
 
-      Firebase.pushFloat("/colmeia2/temperature", temp2.toFloat());
-      Firebase.pushFloat("/colmeia3/temperature", temp3.toFloat());
-
-      Firebase.pushFloat("/colmeia1/humidade", humidade.toFloat());
-      Firebase.pushFloat("/colmeia2/humidade", humidade.toFloat());
-      Firebase.pushFloat("/colmeia3/humidade", humidade.toFloat());
-
-      //Serial.println(temp1);
-      //Serial.println(temp2);
-      //Serial.println(humidade);
+      Firebase.setFloat("colmeia1/temperature", temperatura.toFloat());
+      Firebase.setFloat("colmeia1/weight", peso.toFloat());
+      Firebase.setFloat("colmeia1/humidity", umidade.toFloat());
 
       valoresToReceive = "";
       break;
