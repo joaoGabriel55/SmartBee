@@ -61,6 +61,7 @@ void setup()
   balanca.set_scale(calibration_factor); // ajusta fator de calibração
   balanca.tare(); // zera a Balança
 
+  //sendGSM("AT+SAPBR=3,1,\"APN\",\"timbrasil.br\"");
   sendGSM("AT+SAPBR=3,1,\"APN\",\"java.claro.com.br\"");
   sendGSM("AT+SAPBR=1,1", 3000);
   sendGSM("AT+HTTPINIT");
